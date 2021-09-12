@@ -19,8 +19,8 @@ import Chart, {
   Legend,
   Label,
   Title,
-  Grid
-} from 'devextreme-react/chart';
+  Grid,
+} from "devextreme-react/chart";
 import GoogleMapReact from "google-map-react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -361,6 +361,149 @@ export class Dashboard extends Component {
       <div>
         <div className="row">
           <div className="col-md-8 col-sm-6 grid-margin p-0">
+            <div className="col-sm-12 pb-2 pl-0 pr-0 pt-0">
+              <div className="card">
+                <div className="card-body">
+                  <div className="row">
+                    <button
+                      type="submit"
+                      className="btn btn-primary mr-2"
+                      style={{
+                        backgroundColor: "white",
+                        color: "gray",
+                        borderColor: "grey",
+                      }}
+                    >
+                      Sinalizar
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-primary mr-5"
+                      style={{
+                        backgroundColor: "white",
+                        color: "gray",
+                        borderColor: "grey",
+                      }}
+                    >
+                      Câmera
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-primary ml-5 mr-0"
+                      style={{
+                        backgroundColor: "white",
+                        color: "gray",
+                        borderColor: "grey",
+                      }}
+                    >
+                      Temperatura
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-primary mr-0"
+                      style={{
+                        backgroundColor: "white",
+                        color: "gray",
+                        borderColor: "grey",
+                      }}
+                    >
+                      Condutividade
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-primary mr-0"
+                      style={{
+                        backgroundColor: "white",
+                        color: "gray",
+                        borderColor: "grey",
+                      }}
+                    >
+                      Nitrogênio
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-primary mr-0"
+                      style={{
+                        backgroundColor: "white",
+                        color: "gray",
+                        borderColor: "grey",
+                      }}
+                    >
+                      Oxigênação
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 pb-2 pl-0 pr-0 pt-0">
+              <div className="card">
+                <div className="card-body">
+                  <h5>Kinematic Scanner</h5>
+                  <div className="row">
+                    <div className="col-2 col-sm-12 col-xl-5 ">
+                      <div className="d-flex d-sm-block d-md-flex align-items-center">
+                        <div className="row">
+                          <i
+                            className="icon-sm mdi mdi-clock ml-2"
+                            style={{ color: "grey" }}
+                          ></i>
+                          <h6
+                            className="mb-0 ml-1"
+                            style={{ color: "grey", marginTop: "3px" }}
+                          >
+                            2 minutos atrás
+                          </h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-10 col-sm-12 col-xl-7 text-right text-xl-right">
+                      <div className="row text-right text-xl-right">
+                        <i
+                          className="icon-sm mdi mdi mdi-crosshairs-gps ml-2"
+                          style={{ color: "blue" }}
+                        ></i>
+                        <p
+                          className="ml-1 mr-2"
+                          style={{ color: "blue", marginTop: "2px" }}
+                        >
+                          40.446 N 79.982 W
+                        </p>
+                        <i
+                          className="icon-sm mdi mdi mdi-spotify ml-2"
+                          style={{ color: "#12dc8c" }}
+                        ></i>
+                        <p
+                          className="ml-1 mr-2"
+                          style={{ color: "#12dc8c", marginTop: "2px" }}
+                        >
+                          Transmitindo
+                        </p>
+                        <i
+                          className="icon-sm mdi mdi mdi-wifi ml-2"
+                          style={{ color: "red" }}
+                        ></i>
+                        <p
+                          className="ml-1 mr-2"
+                          style={{ color: "red", marginTop: "2px" }}
+                        >
+                          Fraco
+                        </p>
+                        <i
+                          className="icon-sm mdi mdi-signal ml-2"
+                          style={{ color: "#12dc8c" }}
+                        ></i>
+                        <p
+                          className="ml-1 mr-2"
+                          style={{ color: "#12dc8c", marginTop: "2px" }}
+                        >
+                          95%
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="row">
               <div className="col-sm-3 grid-margin">
                 <div className="card">
@@ -436,7 +579,10 @@ export class Dashboard extends Component {
                 <div className="card-body">
                   <div className="row">
                     <div className="col-1 align-items-center">
-                      <i className="mdi mdi-wifi"></i>
+                      <i
+                        className="icon-md mdi mdi-signal-variant"
+                        style={{ color: "grey" }}
+                      ></i>
                     </div>
                     <div className="col">
                       <h4 className="card-title mb-1">Telemetria</h4>

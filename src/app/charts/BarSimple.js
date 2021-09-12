@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography,} from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Chart, {
   CommonSeriesSettings,
@@ -10,7 +10,7 @@ import Chart, {
   Legend,
   Label,
   Title,
-  Grid
+  Grid,
 } from "devextreme-react/chart";
 import SelectBox from "devextreme-react/select-box";
 const types = ["line", "stackedline", "fullstackedline"];
@@ -60,7 +60,7 @@ const useStyles = makeStyles(() => ({
 
 function MockBarLine(props) {
   const classes = useStyles();
-  
+
   React.useEffect(() => {}, [props]);
 
   const customizeTooltip = (e) => {
@@ -74,12 +74,7 @@ function MockBarLine(props) {
   return (
     <>
       <React.Fragment>
-        <Chart
-          id="chart"
-       
-          defaultPane="bottomPane"
-          dataSource={props.data}
-        >
+        <Chart id="chart" defaultPane="bottomPane" dataSource={props.data}>
           <CommonSeriesSettings argumentField="month" />
           <Series
             pane="topPane"
@@ -113,7 +108,6 @@ function MockBarLine(props) {
           </ValueAxis>
 
           <Legend verticalAlignment="bottom" horizontalAlignment="center" />
-        
         </Chart>
       </React.Fragment>
     </>
