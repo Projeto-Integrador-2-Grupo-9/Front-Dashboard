@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography, Grid } from "@material-ui/core";
+import { Card, CardContent, Typography,} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Chart,
-  Series,
-  ArgumentAxis,
+import Chart, {
   CommonSeriesSettings,
+  Series,
+  Pane,
+  ValueAxis,
   Export,
   Legend,
-  Margin,
+  Label,
   Title,
-  Subtitle,
-  Tooltip,
+  Grid
 } from "devextreme-react/chart";
 import SelectBox from "devextreme-react/select-box";
 const types = ["line", "stackedline", "fullstackedline"];
@@ -61,24 +60,7 @@ const useStyles = makeStyles(() => ({
 
 function MockBarLine(props) {
   const classes = useStyles();
-  const dataSource = [
-    {
-      day: "Thursday",
-      oranges: 4,
-    },
-    {
-      day: "Friday",
-      oranges: 6,
-    },
-    {
-      day: "Saturday",
-      oranges: 11,
-    },
-    {
-      day: "Sunday",
-      oranges: 4,
-    },
-  ];
+  
   React.useEffect(() => {}, [props]);
 
   const customizeTooltip = (e) => {
@@ -92,42 +74,58 @@ function MockBarLine(props) {
   return (
     <>
       <React.Fragment>
-        <Chart id="chart" rotated={props.rotated} dataSource={props.data}>
-          <CommonSeriesSettings
-            argumentField="state"
-            type="bar"
-            barPadding={0.1}
-            visible={true}
-            borderRadius={2}
-            borderRadius={5}
-            borderColor="rgb(0, 144, 230)"
+        <Chart
+          id="chart"
+       
+          defaultPane="bottomPane"
+          dataSource={props.data}
+        >
+          <CommonSeriesSettings argumentField="month" />
+          <Series
+            pane="topPane"
+            color="#b0daff"
+            type="rangeArea"
+            rangeValue1Field="minT"
+            rangeValue2Field="maxT"
+            name="Monthly Temperature Ranges, °C"
           />
           <Series
-            valueField="oranges"
-            rotated="true"
-            barPadding={0.1}
-            argumentField="day"
-            type="bar"
-            color={props.color}
-          />
-          <ArgumentAxis
-            valueMarginsEnabled={false}
-            discreteAxisDivisionMode="crossLabels"
+            pane="topPane"
+            valueField="avgT"
+            name="Average Temperature, °C"
           >
+            <Label visible={true} customizeText={temperatureCustomizeText} />
+          </Series>
+          <Series type="bar" valueField="prec" name="prec, mm">
+            <Label visible={true} customizeText={precipitationCustomizeText} />
+          </Series>
+
+          <Pane name="topPane" />
+          <Pane name="bottomPane" />
+
+          <ValueAxis pane="bottomPane">
             <Grid visible={true} />
-          </ArgumentAxis>
+            <Title text="Precipitation, mm" />
+          </ValueAxis>
+          <ValueAxis pane="topPane">
+            <Grid visible={true} />
+            <Title text="Temperature, °C" />
+          </ValueAxis>
 
-          <Legend
-            verticalAlignment="bottom"
-            horizontalAlignment="center"
-            itemTextPosition="bottom"
-          />
-
-          <Tooltip enabled={true} />
+          <Legend verticalAlignment="bottom" horizontalAlignment="center" />
+        
         </Chart>
       </React.Fragment>
     </>
   );
+}
+
+function temperatureCustomizeText({ valueText }) {
+  return `${valueText} °C`;
+}
+
+function precipitationCustomizeText({ valueText }) {
+  return `${valueText} mm`;
 }
 
 export default MockBarLine;
