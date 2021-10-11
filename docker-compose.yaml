@@ -1,8 +1,8 @@
 version: "3.8"
 
-services:  
-# Listando services de acordo com a cadeira de prioridade de dependencia.
-  chat-front-app:
+services:
+  # Listando services de acordo com a cadeira de prioridade de dependencia.
+  frontend:
     build:
       context: ./frontend
     volumes:
@@ -10,8 +10,3 @@ services:
       - /frontend/node_modules
     ports:
       - 3000:3000
-
-
-
-
-  
