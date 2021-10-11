@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import MockBarSimple from "../charts/BarSimple";
 import GoogleMapReact from "google-map-react";
 import Labels from "../components/Label";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { Lightbulb } from "@mui/icons-material";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export class Dashboard extends Component {
@@ -43,6 +45,7 @@ export class Dashboard extends Component {
                         borderColor: "grey",
                       }}
                     >
+                      <Lightbulb fontSize="small" className="mr-2"></Lightbulb>
                       Sinalizar
                     </button>
                     <button
@@ -54,11 +57,12 @@ export class Dashboard extends Component {
                         borderColor: "grey",
                       }}
                     >
+                      <CameraAltIcon fontSize="small" className="mr-2"></CameraAltIcon>
                       Câmera
                     </button>
                     <button
                       type="submit"
-                      className="btn btn-primary ml-5 mr-0"
+                      className="btn btn-primary ml-3 mr-0"
                       style={{
                         backgroundColor: "white",
                         color: "gray",
