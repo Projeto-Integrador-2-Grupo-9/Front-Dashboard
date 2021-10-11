@@ -57,7 +57,10 @@ export class Dashboard extends Component {
                         borderColor: "grey",
                       }}
                     >
-                      <CameraAltIcon fontSize="small" className="mr-2"></CameraAltIcon>
+                      <CameraAltIcon
+                        fontSize="small"
+                        className="mr-2"
+                      ></CameraAltIcon>
                       Câmera
                     </button>
                     <button
@@ -115,7 +118,7 @@ export class Dashboard extends Component {
             <div className="col-sm-12 pb-2 pl-0 pr-0 pt-0">
               <div className="card">
                 <div className="card-body">
-                  <h5>Kinematic Scanner</h5>
+                  <h5>Boia central</h5>
                   <div className="row">
                     <div className="col-2 col-sm-12 col-xl-5 ">
                       <div className="d-flex d-sm-block d-md-flex align-items-center">
@@ -268,97 +271,92 @@ export class Dashboard extends Component {
                   </div>
 
                   <MockBarSimple
-                    color="rgb(0, 144, 230, 0.7)"
-                    border="rgb(0, 144, 230)"
-                    rotated={true}
-                    item="Hierárquia"
                     data={[
                       {
-                        month: "January",
+                        month: "Janeiro",
                         avgT: 9.8,
                         minT: 4.1,
                         maxT: 15.5,
                         prec: 109,
                       },
                       {
-                        month: "February",
+                        month: "Fevereiro",
                         avgT: 11.8,
                         minT: 5.8,
                         maxT: 17.8,
                         prec: 104,
                       },
                       {
-                        month: "March",
+                        month: "Março",
                         avgT: 13.4,
                         minT: 7.2,
                         maxT: 19.6,
                         prec: 92,
                       },
                       {
-                        month: "April",
+                        month: "Abril",
                         avgT: 15.4,
                         minT: 8.1,
                         maxT: 22.8,
                         prec: 30,
                       },
                       {
-                        month: "May",
+                        month: "Maio",
                         avgT: 18,
                         minT: 10.3,
                         maxT: 25.7,
                         prec: 10,
                       },
                       {
-                        month: "June",
+                        month: "Junho",
                         avgT: 20.6,
                         minT: 12.2,
                         maxT: 29,
                         prec: 2,
                       },
                       {
-                        month: "July",
+                        month: "Julho",
                         avgT: 22.2,
                         minT: 13.2,
                         maxT: 31.3,
                         prec: 2,
                       },
                       {
-                        month: "August",
+                        month: "Agosto",
                         avgT: 22.2,
                         minT: 13.2,
                         maxT: 31.1,
                         prec: 1,
                       },
                       {
-                        month: "September",
+                        month: "Setembro",
                         avgT: 21.2,
                         minT: 12.4,
                         maxT: 29.9,
                         prec: 8,
                       },
                       {
-                        month: "October",
+                        month: "Outubro",
                         avgT: 17.9,
                         minT: 9.7,
                         maxT: 26.1,
                         prec: 24,
                       },
                       {
-                        month: "November",
+                        month: "Novembro",
                         avgT: 12.9,
                         minT: 6.2,
                         maxT: 19.6,
                         prec: 64,
                       },
                       {
-                        month: "December",
+                        month: "Dezembro",
                         avgT: 9.6,
                         minT: 3.4,
                         maxT: 15.7,
                         prec: 76,
                       },
                     ]}
-                    title="Turnover por nível hierárquico"
                   ></MockBarSimple>
                 </div>
               </div>
@@ -367,7 +365,7 @@ export class Dashboard extends Component {
 
           <div className="col-md-4 col-sm-6 grid-margin pl-5">
             <div className="row">
-              <div style={{ height: "100vh", width: "100%" }}>
+              <div style={{ height: "116vh", width: "100%" }}>
                 <GoogleMapReact
                   bootstrapURLKeys={{
                     key: "AIzaSyCrDnH48o88fCpd-Dqlw-QUAyBhhB0Pcio",

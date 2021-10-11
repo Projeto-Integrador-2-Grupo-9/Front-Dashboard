@@ -14,10 +14,10 @@ class AppRoutes extends Component {
       <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route path="/user-pages/login-1" component={Login} />
+          <Route path="/login" component={Login} />
           <Route path="/user-pages/register-1" component={Register1} />
           <Route path="/error-pages/error-404" component={Error404} />
-          <Redirect to="/dashboard" />
+          <Redirect to="/login" />
         </Switch>
       </Suspense>
     );

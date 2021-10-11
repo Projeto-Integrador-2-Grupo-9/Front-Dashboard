@@ -82,12 +82,12 @@ function MockBarLine(props) {
             type="rangeArea"
             rangeValue1Field="minT"
             rangeValue2Field="maxT"
-            name="Monthly Temperature Ranges, °C"
+            name="Variação mensal das temperaturas, °C"
           />
           <Series
             pane="topPane"
             valueField="avgT"
-            name="Average Temperature, °C"
+            name="Média Temperaturas, °C"
           >
             <Label visible={true} customizeText={temperatureCustomizeText} />
           </Series>
@@ -100,11 +100,11 @@ function MockBarLine(props) {
 
           <ValueAxis pane="bottomPane">
             <Grid visible={true} />
-            <Title text="Precipitation, mm" />
+            <Title text="Precipitação, mm" />
           </ValueAxis>
           <ValueAxis pane="topPane">
             <Grid visible={true} />
-            <Title text="Temperature, °C" />
+            <Title text="Temperatura, °C" />
           </ValueAxis>
 
           <Legend verticalAlignment="bottom" horizontalAlignment="center" />
