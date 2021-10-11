@@ -22,6 +22,7 @@ import Chart, {
   Grid,
 } from "devextreme-react/chart";
 import GoogleMapReact from "google-map-react";
+import Labels from "../components/Label";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -397,6 +398,7 @@ export class Dashboard extends Component {
                       }}
                     >
                       Temperatura
+                      <Labels checked={false}></Labels>
                     </button>
                     <button
                       type="submit"
@@ -408,6 +410,7 @@ export class Dashboard extends Component {
                       }}
                     >
                       Condutividade
+                      <Labels checked={true}></Labels>
                     </button>
                     <button
                       type="submit"
@@ -419,6 +422,7 @@ export class Dashboard extends Component {
                       }}
                     >
                       Nitrogênio
+                      <Labels checked={false}></Labels>
                     </button>
                     <button
                       type="submit"
@@ -429,7 +433,8 @@ export class Dashboard extends Component {
                         borderColor: "grey",
                       }}
                     >
-                      Oxigênação
+                      <span>Oxigênação</span>
+                      <Labels checked={true}></Labels>
                     </button>
                   </div>
                 </div>
