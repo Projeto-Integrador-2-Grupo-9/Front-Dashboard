@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Bars from "../../components/charts/BarStacked";
+import NewLines from "../../components/charts/Lines";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export class Relatorios extends Component {
@@ -55,6 +57,94 @@ export class Relatorios extends Component {
                     </ToggleButton>
                   </ToggleButtonGroup>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-4 col-sm-12 grid-margin p-2 grid-margin">
+            <div className="card">
+              <div className="card-body text-center">
+                <Bars
+                  color="#106B99"
+                  rotated={false}
+                  cat={["dia 1", "dia 2", "dia 3"]}
+                  data={[
+                    {
+                      name: "Oxigênio",
+                      data: [50, 21, 84],
+                    },
+                  ]}
+                  title="Oxigênio dissolvido"
+                ></Bars>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-12 grid-margin p-2 grid-margin">
+            <div className="card">
+              <div className="card-body text-center">
+                <Bars
+                  color="#06D6A0"
+                  rotated={false}
+                  cat={["dia 1", "dia 2", "dia 3"]}
+                  data={[
+                    {
+                      name: "Oxigênio",
+                      data: [50, 21, 84],
+                    },
+                  ]}
+                  title="Nitrogênio"
+                ></Bars>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-12 grid-margin p-2 grid-margin">
+            <div className="card">
+              <div className="card-body text-center">
+                <NewLines title="Temperatura"></NewLines>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-12 grid-margin p-2 grid-margin">
+            <div className="card">
+              <div className="card-body text-center">
+                <Bars
+                  color="#F57F17"
+                  rotated={false}
+                  cat={["dia 1", "dia 2", "dia 3"]}
+                  data={[
+                    {
+                      name: "Oxigênio",
+                      data: [50, 21, 84],
+                    },
+                  ]}
+                  title="Turbidez"
+                ></Bars>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-12 grid-margin p-2 grid-margin">
+            <div className="card">
+              <div className="card-body text-center">
+              <NewLines title="PH"></NewLines>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-12 grid-margin p-2 grid-margin">
+            <div className="card">
+              <div className="card-body text-center">
+                <Bars
+                  color="#5393E8"
+                  rotated={false}
+                  cat={["dia 1", "dia 2", "dia 3"]}
+                  data={[
+                    {
+                      name: "Oxigênio",
+                      data: [50, 21, 84],
+                    },
+                  ]}
+                  title="Condutividade"
+                ></Bars>
               </div>
             </div>
           </div>
