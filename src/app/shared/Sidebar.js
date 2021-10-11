@@ -57,14 +57,14 @@ class Sidebar extends Component {
             <img
               src={require("../../assets/images/floater.png")}
               alt="logo"
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", width: '200px', height: '50px' }}
             />
           </a>
           <a className="sidebar-brand brand-logo-mini" href="index.html">
             <img
               src={require("../../assets/images/floater.png")}
               alt="logo"
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", width: '30px' }}
             />
           </a>
         </div>
