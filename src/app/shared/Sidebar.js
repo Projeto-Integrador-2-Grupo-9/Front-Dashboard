@@ -57,31 +57,47 @@ class Sidebar extends Component {
             <img
               src={require("../../assets/images/floater.png")}
               alt="logo"
-              style={{ objectFit: "contain", width: '200px', height: '50px' }}
+              style={{ objectFit: "contain", width: "200px", height: "50px" }}
             />
           </a>
           <a className="sidebar-brand brand-logo-mini" href="index.html">
             <img
               src={require("../../assets/images/floater.png")}
               alt="logo"
-              style={{ objectFit: "contain", width: '30px' }}
+              style={{ objectFit: "contain", width: "30px" }}
             />
           </a>
         </div>
         <ul className="nav">
           <li
             className={
-              this.isPathActive("/newdash")
+              this.isPathActive("/dashboard")
                 ? "nav-item menu-items active"
                 : "nav-item menu-items"
             }
           >
-            <Link className="nav-link" to="/newdash">
+            <Link className="nav-link" to="/dashboard">
               <span className="menu-icon">
                 <i className="mdi mdi-view-dashboard"></i>
               </span>
               <span className="menu-title">
                 <Trans>Dashboard</Trans>
+              </span>
+            </Link>
+          </li>
+          <li
+            className={
+              this.isPathActive("/relatorios")
+                ? "nav-item menu-items active"
+                : "nav-item menu-items"
+            }
+          >
+            <Link className="nav-link" to="/relatorios">
+              <span className="menu-icon">
+                <i className="mdi mdi-file-document"></i>
+              </span>
+              <span className="menu-title">
+                <Trans>Relatórios</Trans>
               </span>
             </Link>
           </li>
@@ -130,31 +146,6 @@ class Sidebar extends Component {
               </span>
               <span className="menu-title">
                 <Trans>Missões</Trans>
-              </span>
-            </div>
-          </li>
-
-          <li
-            className={
-              this.isPathActive("/charts")
-                ? "nav-item menu-items active"
-                : "nav-item menu-items"
-            }
-          >
-            <div
-              className={
-                this.state.chartsMenuOpen
-                  ? "nav-link menu-expanded"
-                  : "nav-link"
-              }
-              onClick={() => this.toggleMenuState("chartsMenuOpen")}
-              data-toggle="collapse"
-            >
-              <span className="menu-icon">
-                <i className="mdi mdi-file-document"></i>
-              </span>
-              <span className="menu-title">
-                <Trans>Relatórios</Trans>
               </span>
             </div>
           </li>
