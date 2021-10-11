@@ -1,7 +1,6 @@
 {
-  "name": "corona-react",
-  "version": "1.1.0",
-  "homepage": "http://bootstrapdash.com/demo/corona-react-free/template/demo_1/preview",
+  "name": "ProjetoIntegradorGrupo9",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "^2.11.0",

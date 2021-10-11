@@ -1,5 +1,9 @@
 /* Utilities */
 
+.bg-login {
+  background: url('../../assets/images/bg.png');
+  background-size: cover;
+}
 .grid-margin {
   margin-bottom: $grid-gutter-width;
 }

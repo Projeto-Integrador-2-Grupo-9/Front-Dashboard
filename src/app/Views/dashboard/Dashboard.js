@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import MockBarSimple from "../charts/BarSimple";
+import MockBarSimple from "../../components/charts/BarSimple";
 import GoogleMapReact from "google-map-react";
-import Labels from "../components/Label";
+import Labels from "../../components/Label";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Lightbulb } from "@mui/icons-material";
 
