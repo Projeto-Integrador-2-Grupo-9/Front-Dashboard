@@ -1,11 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { Button } from "@material-ui/core";
+import "react-toastify/dist/ReactToastify.css";
 
-export class Login extends Component {
-  render() {
-    return (
-      <div className="bg-login">
+export default function Login(props) {
+  const { register, handleSubmit, watch, errors } = useForm();
+  const { history } = props;
+
+  const handleLogin = (data) => {
+    if (data.email === "admin@aquadata.com" && data.password === "12345") {
+      history.push("/boias/52");
+    } else {
+      toast.error("E-mail ou senha errada! Tente novamente", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  return (
+    <div className="bg-login">
+      <form onSubmit={handleSubmit(handleLogin)}>
+        <ToastContainer />
         <div className="d-flex align-items-center auth px-0">
           <div className="row w-100 mx-0">
             <div className="col-lg-4 mx-auto">
@@ -21,42 +45,48 @@ export class Login extends Component {
                 <Form className="pt-3">
                   <Form.Group className="d-flex search-field">
                     <Form.Control
+                      name="email"
+                      style={{ color: "black" }}
+                      label="E-mail"
+                      {...register("email", { required: true })}
                       type="email"
                       placeholder="E-mail"
                       size="lg"
                       className="h-auto"
-                      style={{ color: "black" }}
                     />
                   </Form.Group>
                   <Form.Group className="d-flex search-field">
                     <Form.Control
+                      name="password"
+                      label="Senha"
+                      style={{ color: "black" }}
+                      variant="outlined"
+                      {...register("password", { required: true })}
                       type="password"
                       placeholder="Senha"
                       size="lg"
                       className="h-auto"
-                      style={{ color: "black" }}
                     />
                   </Form.Group>
                   <div className="mt-3">
-                    <Link
+                    <Button
                       className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                      to="/dashboard"
+                      type="submit"
                       style={{
                         backgroundColor: "#F9BB69",
                         borderColor: "#F9BB69",
                       }}
+                      disableElevation
                     >
                       Entrar
-                    </Link>
+                    </Button>
                   </div>
                 </Form>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      </form>
+    </div>
+  );
 }
-
-export default Login;

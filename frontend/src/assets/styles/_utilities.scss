@@ -4,6 +4,11 @@
   background: url('../../assets/images/bg.png');
   background-size: cover;
 }
+.bg-boia {
+  background: url('../images/floater.png');
+  background-size: cover;
+  border-radius: "100px";
+}
 .grid-margin {
   margin-bottom: $grid-gutter-width;
 }

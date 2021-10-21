@@ -71,12 +71,12 @@ class Sidebar extends Component {
         <ul className="nav">
           <li
             className={
-              this.isPathActive("/dashboard")
+              this.isPathActive("/dashboard/52")
                 ? "nav-item menu-items active"
                 : "nav-item menu-items"
             }
           >
-            <Link className="nav-link" to="/dashboard">
+            <Link className="nav-link" to="/dashboard/52">
               <span className="menu-icon">
                 <i className="mdi mdi-view-dashboard"></i>
               </span>
@@ -103,51 +103,19 @@ class Sidebar extends Component {
           </li>
           <li
             className={
-              this.isPathActive("/basic-ui")
+              this.isPathActive("/boias/52")
                 ? "nav-item menu-items active"
                 : "nav-item menu-items"
             }
           >
-            <div
-              className={
-                this.state.basicUiMenuOpen
-                  ? "nav-link menu-expanded"
-                  : "nav-link"
-              }
-              onClick={() => this.toggleMenuState("basicUiMenuOpen")}
-              data-toggle="collapse"
-            >
+            <Link className="nav-link" to="/boias/52">
               <span className="menu-icon">
                 <i className="mdi mdi-crosshairs-gps"></i>
               </span>
               <span className="menu-title">
                 <Trans>Boias</Trans>
               </span>
-            </div>
-          </li>
-          <li
-            className={
-              this.isPathActive("/form-elements")
-                ? "nav-item menu-items active"
-                : "nav-item menu-items"
-            }
-          >
-            <div
-              className={
-                this.state.formElementsMenuOpen
-                  ? "nav-link menu-expanded"
-                  : "nav-link"
-              }
-              onClick={() => this.toggleMenuState("formElementsMenuOpen")}
-              data-toggle="collapse"
-            >
-              <span className="menu-icon">
-                <i className="mdi mdi-marker-check"></i>
-              </span>
-              <span className="menu-title">
-                <Trans>Missões</Trans>
-              </span>
-            </div>
+            </Link>
           </li>
         </ul>
       </nav>

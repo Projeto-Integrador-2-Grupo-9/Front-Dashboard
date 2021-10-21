@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Spinner from "../app/shared/Spinner";
 
 const Dashboard = lazy(() => import("./Views/dashboard/Dashboard"));
+const Boias = lazy(() => import("./Views/dashboard/Boias"));
 const Relatorios = lazy(() => import("./Views/relatorios"));
 const Error404 = lazy(() => import("./Views/error-pages/Error404"));
 const Login = lazy(() => import("./Views/user-pages/Login"));
@@ -14,7 +15,8 @@ class AppRoutes extends Component {
     return (
       <Suspense fallback={<Spinner />}>
         <Switch>
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/52" component={Dashboard} />
+          <Route exact path="/boias/52" component={Boias} />
           <Route exact path="/relatorios" component={Relatorios} />
           <Route path="/login" component={Login} />
           <Route path="/user-pages/register-1" component={Register1} />

@@ -4,6 +4,7 @@ import GoogleMapReact from "google-map-react";
 import Labels from "../../components/Label";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Lightbulb } from "@mui/icons-material";
+import Loading from "../../components/loading";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export class Dashboard extends Component {
@@ -17,19 +18,50 @@ export class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      receivedData: [],
-      handleChartClick: [],
-      receivedFilter: [],
-      grid: true,
       openLoading: false,
-      token: "",
-      curTime: new Date().toLocaleString(),
     };
+    this.handleOpenLoading = this.handleOpenLoading.bind(this);
+    this.handleCloseLoading = this.handleCloseLoading.bind(this);
+  }
+
+  handleOpenLoading() {
+    this.setState({ openLoading: true }, () => {
+      //Callback function
+    });
+  }
+
+  handleCloseLoading() {
+    this.setState({ openLoading: false }, () => {
+      //Callback function
+    });
+  }
+  wait(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
+  }
+
+  async load() {
+    this.handleOpenLoading();
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    this.handleCloseLoading();
+  }
+
+  async componentDidMount() {
+   this.load()
   }
 
   render() {
     return (
       <div>
+        {this.state.openLoading ? (
+          <Loading
+            open={this.state.openLoading}
+            close={this.handleCloseLoading}
+          />
+        ) : null}
         <div className="row">
           <div className="col-md-8 col-sm-6 grid-margin p-0">
             <div className="col-sm-12 pb-2 pl-0 pr-0 pt-0">
