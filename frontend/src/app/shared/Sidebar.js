@@ -71,12 +71,12 @@ class Sidebar extends Component {
         <ul className="nav">
           <li
             className={
-              this.isPathActive("/dashboard/52")
+              this.isPathActive("/dashboard/1")
                 ? "nav-item menu-items active"
                 : "nav-item menu-items"
             }
           >
-            <Link className="nav-link" to="/dashboard/52">
+            <Link className="nav-link" to="/dashboard/1">
               <span className="menu-icon">
                 <i className="mdi mdi-view-dashboard"></i>
               </span>
@@ -103,12 +103,12 @@ class Sidebar extends Component {
           </li>
           <li
             className={
-              this.isPathActive("/boias/52")
+              this.isPathActive("/boias")
                 ? "nav-item menu-items active"
                 : "nav-item menu-items"
             }
           >
-            <Link className="nav-link" to="/boias/52">
+            <Link className="nav-link" to="/boias">
               <span className="menu-icon">
                 <i className="mdi mdi-crosshairs-gps"></i>
               </span>

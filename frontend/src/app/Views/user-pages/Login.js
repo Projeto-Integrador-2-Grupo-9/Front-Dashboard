@@ -12,7 +12,7 @@ export default function Login(props) {
 
   const handleLogin = (data) => {
     if (data.email === "admin@aquadata.com" && data.password === "12345") {
-      history.push("/boias/52");
+      history.push("/boias");
     } else {
       toast.error("E-mail ou senha errada! Tente novamente", {
         position: "top-right",

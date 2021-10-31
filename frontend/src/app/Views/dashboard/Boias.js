@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals*/
 import React, { Component } from "react";
 import MockBarSimple from "../../components/charts/BarSimple";
 import GoogleMapReact from "google-map-react";
@@ -5,9 +6,14 @@ import Labels from "../../components/Label";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Lightbulb } from "@mui/icons-material";
 import Loading from "../../components/loading";
+import { useHistory } from "react-router-dom";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+
 export class Boias extends Component {
+
+
   static OPTIONS = {
     minZoom: 4,
     maxZoom: 14,
@@ -53,7 +59,7 @@ export class Boias extends Component {
 
   async load() {
     this.handleOpenLoading();
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     this.handleCloseLoading();
   }
 
@@ -78,31 +84,33 @@ export class Boias extends Component {
                   bootstrapURLKeys={{
                     key: "AIzaSyCrDnH48o88fCpd-Dqlw-QUAyBhhB0Pcio",
                   }}
-                  options = {this.props.OPTIONS}
+                  options={this.props.OPTIONS}
                   defaultCenter={this.props.center}
                   defaultZoom={this.props.zoom}
                   onZoomChanged={(e) => {
                     console.log(this.getZoom());
                   }}
                 >
-                  <div
+                  <div onClick={() => { this.props.history.push("/dashboard/1") }}
+                    className="bg-boia"
+                    style={{ width: "50px", height: "50px" }}
+                    lat={-15.8225}
+                    lng={-47.8357}
+                  >
+                    <a>Boia 1</a>
+                  </div>
+                  <div onClick={() => { this.props.history.push("/dashboard/2") }}
+                    className="bg-boia"
+                    style={{ width: "50px", height: "50px" }}
+                    lat={-15.8270}
+                    lng={-47.8407}
+                  ><a>Boia 2</a></div>
+                  <div onClick={() => { this.props.history.push("/dashboard/3") }}
                     className="bg-boia"
                     style={{ width: "50px", height: "50px" }}
                     lat={-15.8325}
                     lng={-47.8477}
-                  ></div>
-                  <div
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={-15.8325}
-                    lng={-47.8477}
-                  ></div>
-                  <div
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={-15.8325}
-                    lng={-47.8477}
-                  ></div>
+                  ><a>Boia 3</a></div>
                 </GoogleMapReact>
               </div>
             </div>

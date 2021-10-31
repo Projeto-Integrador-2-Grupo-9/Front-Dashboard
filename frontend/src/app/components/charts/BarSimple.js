@@ -61,7 +61,7 @@ const useStyles = makeStyles(() => ({
 function MockBarLine(props) {
   const classes = useStyles();
 
-  React.useEffect(() => {}, [props]);
+  React.useEffect(() => { }, [props]);
 
   const customizeTooltip = (e) => {
     return { text: Math.abs(e.valueText) };
@@ -82,7 +82,7 @@ function MockBarLine(props) {
             type="rangeArea"
             rangeValue1Field="minT"
             rangeValue2Field="maxT"
-            name="Variação mensal das temperaturas, °C"
+            name="Variação diária das temperaturas, °C"
           />
           <Series
             pane="topPane"
@@ -91,7 +91,7 @@ function MockBarLine(props) {
           >
             <Label visible={true} customizeText={temperatureCustomizeText} />
           </Series>
-          <Series type="bar" valueField="prec" name="prec, mm">
+          <Series type="bar" valueField="prec" name="pH">
             <Label visible={true} customizeText={precipitationCustomizeText} />
           </Series>
 
@@ -100,7 +100,7 @@ function MockBarLine(props) {
 
           <ValueAxis pane="bottomPane">
             <Grid visible={true} />
-            <Title text="Precipitação, mm" />
+            <Title text="pH" />
           </ValueAxis>
           <ValueAxis pane="topPane">
             <Grid visible={true} />
@@ -119,7 +119,7 @@ function temperatureCustomizeText({ valueText }) {
 }
 
 function precipitationCustomizeText({ valueText }) {
-  return `${valueText} mm`;
+  return `${valueText}`;
 }
 
 export default MockBarLine;
