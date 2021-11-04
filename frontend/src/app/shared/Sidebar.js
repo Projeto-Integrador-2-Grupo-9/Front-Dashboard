@@ -69,6 +69,24 @@ class Sidebar extends Component {
           </a>
         </div>
         <ul className="nav">
+
+          <li
+            className={
+              this.isPathActive("/boias")
+                ? "nav-item menu-items active"
+                : "nav-item menu-items"
+            }
+          >
+            <Link className="nav-link" to="/boias">
+              <span className="menu-icon">
+                <i className="mdi mdi-crosshairs-gps"></i>
+              </span>
+              <span className="menu-title">
+                <Trans>Flutuadores</Trans>
+              </span>
+            </Link>
+          </li>
+
           <li
             className={
               this.isPathActive("/dashboard/1")
@@ -92,31 +110,8 @@ class Sidebar extends Component {
                 : "nav-item menu-items"
             }
           >
-            <Link className="nav-link" to="/relatorios">
-              <span className="menu-icon">
-                <i className="mdi mdi-file-document"></i>
-              </span>
-              <span className="menu-title">
-                <Trans>Relatórios</Trans>
-              </span>
-            </Link>
           </li>
-          <li
-            className={
-              this.isPathActive("/boias")
-                ? "nav-item menu-items active"
-                : "nav-item menu-items"
-            }
-          >
-            <Link className="nav-link" to="/boias">
-              <span className="menu-icon">
-                <i className="mdi mdi-crosshairs-gps"></i>
-              </span>
-              <span className="menu-title">
-                <Trans>Boias</Trans>
-              </span>
-            </Link>
-          </li>
+
         </ul>
       </nav>
     );
