@@ -6,6 +6,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Lightbulb } from "@mui/icons-material";
 import Loading from "../../components/loading";
 import { padding } from "@mui/system";
+import axios from 'axios';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export class Dashboard extends Component {
@@ -24,6 +25,8 @@ export class Dashboard extends Component {
     this.id = 1
     this.state = {
       openLoading: false,
+      floatersPosition: [],
+      sensorData: []
     };
     this.handleOpenLoading = this.handleOpenLoading.bind(this);
     this.handleCloseLoading = this.handleCloseLoading.bind(this);
@@ -332,6 +335,34 @@ export class Dashboard extends Component {
 
   }
 
+
+
+  componentWillMount() {
+
+    axios.get(`http://localhost:80/floaters_position`)
+      .then(res => {
+        const floatersPosition = res.data;
+        axios.post(`http://localhost:80/last_log`, { "mac_address": floatersPosition[this.props.location.pathname.split("/")[2] - 1].mac_address })
+          .then(res => {
+            const sensorData = res.data;
+            this.setState({ sensorData });
+          })
+        this.setState({ floatersPosition });
+
+      })
+
+  }
+
+  handleSensorData(floatersPosition, id) {
+    axios.post(`http://localhost:80/last_log`, { "mac_address": floatersPosition[this.props.location.pathname.split("/")[2] - 1].mac_address })
+      .then(res => {
+        const sensorData = res.data;
+        this.setState({ sensorData });
+      })
+
+    this.props.history.push("/dashboard/" + id)
+  }
+
   handleOpenLoading() {
     this.setState({ openLoading: true }, () => {
       //Callback function
@@ -368,7 +399,6 @@ export class Dashboard extends Component {
   render() {
     return (
       <div>
-        {console.log(this.boias["1"])}
         {this.state.openLoading ? (
           <Loading
             open={this.state.openLoading}
@@ -478,7 +508,7 @@ export class Dashboard extends Component {
                             className="mb-0 ml-1"
                             style={{ color: "grey", marginTop: "3px" }}
                           >
-                            2 minutos atrás
+                            Atualizado em: {this.state.sensorData?.logs?.[0].timestamp} UTC
                           </h6>
                         </div>
                       </div>
@@ -493,7 +523,11 @@ export class Dashboard extends Component {
                           className="ml-1 mr-2"
                           style={{ color: "blue", marginTop: "2px" }}
                         >
-                          {this.boias[this.props.location.pathname.split("/")[2]].center.lat} N {this.boias[this.props.location.pathname.split("/")[2]].center.lng} W
+                          {this.state.floatersPosition[this.props.location.pathname.split("/")[2] - 1]?.position.logs[0].current_position.lat} N
+                          {" "}
+                          {this.state.floatersPosition[this.props.location.pathname.split("/")[2] - 1]?.position.logs[0].current_position.lng} W
+                          {/* this.state.floatersPosition[this.props.location.pathname.split("/")[2] - 1]?.position.logs[0].current_position.lat) N 
+                          {this.state.floatersPosition[this.props.location.pathname.split("/")[2] - 1]?.position.logs[0].current_position.lng) W */}
                         </p>
                         <i
                           className="icon-sm mdi mdi mdi-spotify ml-2"
@@ -539,7 +573,7 @@ export class Dashboard extends Component {
                     <div className="row">
                       <div className="col-8 col-sm-12 col-xl-8 ">
                         <div className="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 className="mb-0 mt-0">{this.boias[this.props.location.pathname.split("/")[2]].lastData.temp} C</h2>
+                          <h2 className="mb-0 mt-0">{this.state.sensorData?.logs?.[0]?.temperature} C</h2>
                         </div>
                       </div>
                       {/*    <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -556,7 +590,8 @@ export class Dashboard extends Component {
                     <div className="row">
                       <div className="col-8 col-sm-12 col-xl-8 ">
                         <div className="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 className="mb-0 mt-0">{this.boias[this.props.location.pathname.split("/")[2]].lastData.oxi} mg/l</h2>
+
+                          <h2 className="mb-0 mt-0">{this.state.sensorData?.logs?.[0]?.dissolved_oxygen} mg/l</h2>
                         </div>
                       </div>
                       {/*    <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -573,7 +608,7 @@ export class Dashboard extends Component {
                     <div className="row">
                       <div className="col-8 col-sm-12 col-xl-8 ">
                         <div className="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 className="mb-0 mt-0">{this.boias[this.props.location.pathname.split("/")[2]].lastData.ph}</h2>
+                          <h2 className="mb-0 mt-0">{this.state.sensorData?.logs?.[0]?.ph}</h2>
                         </div>
                       </div>
                       {/*    <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -590,7 +625,7 @@ export class Dashboard extends Component {
                     <div className="row">
                       <div className="col-8 col-sm-12 col-xl-8 ">
                         <div className="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 className="mb-0 mt-0">{this.boias[this.props.location.pathname.split("/")[2]].lastData.cond} µS/cm</h2>
+                          <h2 className="mb-0 mt-0">{this.state.sensorData?.logs?.[0]?.conductivity} µS/cm</h2>
                         </div>
                       </div>
                       {/*    <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -607,7 +642,7 @@ export class Dashboard extends Component {
                     <div className="row">
                       <div className="col-8 col-sm-12 col-xl-8 ">
                         <div className="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 className="mb-0 mt-0"> {this.boias[this.props.location.pathname.split("/")[2]].lastData.turb} uT</h2>
+                          <h2 className="mb-0 mt-0"> {this.state.sensorData?.logs?.[0]?.turbidity} uT</h2>
                         </div>
                       </div>
                       {/*    <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -656,33 +691,17 @@ export class Dashboard extends Component {
                   defaultCenter={this.boias[this.props.location.pathname.split("/")[2]].center}
                   defaultZoom={this.props.zoom}
                 >
-                  <div onClick={() => { this.props.history.push("/dashboard/1") }}
+                  {this.state.floatersPosition.map((floater, index) => (
 
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={this.boias["1"].center.lat}
-                    lng={this.boias["1"].center.lng}
-                  >
-                    <a>Boia 1</a>
-                  </div>
-
-                  <div onClick={() => { this.props.history.push("/dashboard/2") }}
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={this.boias["2"].center.lat}
-                    lng={this.boias["2"].center.lng}
-                  >
-                    <a>Boia 2</a>
-                  </div>
-
-                  <div onClick={() => { this.props.history.push("/dashboard/3") }}
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={this.boias["3"].center.lat}
-                    lng={this.boias["3"].center.lng}
-                  >
-                    <a>Boia 3</a>
-                  </div>
+                    <div onClick={() => { this.handleSensorData(this.state.floatersPosition, floater.id) }}
+                      className="bg-boia"
+                      style={{ width: "50px", height: "50px" }}
+                      lat={floater.position.logs[0].current_position.lat}
+                      lng={floater.position.logs[0].current_position.lng}
+                    >
+                      <a> {"Boia " + floater.id} </a>
+                    </div>
+                  ))}
                 </GoogleMapReact>
               </div>
             </div>

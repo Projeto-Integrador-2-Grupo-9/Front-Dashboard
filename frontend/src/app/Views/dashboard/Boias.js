@@ -7,6 +7,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Lightbulb } from "@mui/icons-material";
 import Loading from "../../components/loading";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -21,17 +22,33 @@ export class Boias extends Component {
   static defaultProps = {
     center: {
       lat: -15.8326,
-      lng: -47.8477,
+      lng: -47.8440,
     },
-    zoom: 14,
+    zoom: 15,
   };
   constructor() {
     super();
     this.state = {
       openLoading: false,
+      floatersPosition: []
     };
     this.handleOpenLoading = this.handleOpenLoading.bind(this);
     this.handleCloseLoading = this.handleCloseLoading.bind(this);
+  }
+
+  async getData() {
+    const res = await axios('/data');
+    return await res.json();
+  }
+
+  componentWillMount() {
+
+    axios.get(`http://localhost:80/floaters_position`)
+      .then(res => {
+        const floatersPosition = res.data;
+
+        this.setState({ floatersPosition });
+      })
   }
 
   handleOpenLoading() {
@@ -91,32 +108,24 @@ export class Boias extends Component {
                     console.log(this.getZoom());
                   }}
                 >
-                  <div onClick={() => { this.props.history.push("/dashboard/1") }}
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={-15.8225}
-                    lng={-47.8357}
-                  >
-                    <a>Boia 1</a>
-                  </div>
-                  <div onClick={() => { this.props.history.push("/dashboard/2") }}
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={-15.8270}
-                    lng={-47.8407}
-                  ><a>Boia 2</a></div>
-                  <div onClick={() => { this.props.history.push("/dashboard/3") }}
-                    className="bg-boia"
-                    style={{ width: "50px", height: "50px" }}
-                    lat={-15.8325}
-                    lng={-47.8477}
-                  ><a>Boia 3</a></div>
+
+                  {this.state.floatersPosition.map((floater, index) => (
+
+                    <div onClick={() => { this.props.history.push("/dashboard/" + floater.id) }}
+                      className="bg-boia"
+                      style={{ width: "50px", height: "50px" }}
+                      lat={floater.position.logs[0].current_position.lat}
+                      lng={floater.position.logs[0].current_position.lng}
+                    >
+                      <a> {"Boia " + floater.id} </a>
+                    </div>
+                  ))}
                 </GoogleMapReact>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 }
